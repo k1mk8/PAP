@@ -9,7 +9,7 @@ DaneCzlonek- encja przechowująca dane personalne czlonka silowni.
 Wyizolowanie tych danych ułatwi szyfrowanie
 danych osobowych (funk. dodatkowa) 
 
-LogData- szyfrowana encja, zawierająca dane auteentykacyjne 
+LogData- szyfrowana encja, zawierająca dane autoryzacyjne 
 używane podczas logowania użytkownika do aplikacji.
 
 Adresy - przechowuje adresy zamieszkania.
