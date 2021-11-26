@@ -1,15 +1,5 @@
 package CityGym;
 
-
-// switch (exceptionName){
-//     case "empty" : System.err.println(message + exceptionName);
-//     case "too long": System.err.println(message + exceptionName);
-//     }
-
-
-
-
-
 class InvalidLoginException extends Exception{
 
     InvalidLoginException(String message){
