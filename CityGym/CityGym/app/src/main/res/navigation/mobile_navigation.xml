@@ -6,6 +6,12 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.citygym.ui.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.citygym.ui.home.HomeFragment"
         android:label="@string/title_home"
