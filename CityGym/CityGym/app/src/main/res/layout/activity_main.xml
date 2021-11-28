@@ -5,21 +5,20 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6DAAAA"
     android:paddingTop="?attr/actionBarSize">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="#255353"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/nav_host_fragment_activity_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="412dp"
@@ -27,82 +26,13 @@
         android:background="#69F8FD"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <Button
-        android:id="@+id/QR"
-        android:layout_width="71dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="318dp"
-        android:layout_marginBottom="584dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/QRView"
-        android:layout_width="71dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="304dp"
-        android:layout_marginBottom="584dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/_ee0d2557_21_qr_1234" />
-
-    <ImageView
-        android:id="@+id/Avatar"
-        android:layout_width="71dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="325dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="586dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/AvatarBut"
-        android:layout_width="71dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="325dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="584dp"
-        android:text=""
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/AppName"
-        android:layout_width="166dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="601dp"
-        android:text=" CityGym"
-        android:textColor="#00008B"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
