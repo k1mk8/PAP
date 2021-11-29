@@ -10,24 +10,24 @@ class InvalidLoginException extends Exception{
 
 public class LoginModule{
     
-    Boolean logged_in;
-    Boolean nonExistent = false;
+    static Boolean logged_in;
+    static Boolean nonExistent = false;
     /**
      * This method connects with database to retrieve 
      * expected password value for username
      * @param username
      * @return expected password string for comparison
     */
-    String getExpectedPassword(String username){
+    static String getExpectedPassword(String username){
         
-        if (username == "user"){
+        if (username.equals("user")){
             return "password";
         }
         return "wrong_password";
     }
 
-    Boolean userInDatabase(String username){
-        if (username== "user"){return true;}
+    static Boolean userInDatabase(String username){
+        if (username.equals("user")){return true;}
         
         return false;
     }
@@ -38,7 +38,7 @@ public class LoginModule{
      * @param username
      * @param password
      */
-    public void authenticate(String username, String password) 
+    public static void authenticate(String username, String password) 
     {
         
         // //Check validity of username 
@@ -52,7 +52,7 @@ public class LoginModule{
             String expected_password = getExpectedPassword(username);
 
             // Checking the validity of the password
-            if(expected_password.equals(password))
+            if(password.equals(expected_password))
             {
                 // Printing Output
                 System.out.println("Authentication Successful");
@@ -66,7 +66,7 @@ public class LoginModule{
 
         }
         catch( InvalidLoginException ILE){
-            ILE.getMessage();
+            System.out.print(ILE.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class LoginModule{
     /**
      * this method sets loggedIn flag to false 
      */
-    public void logOut(){
+    public static void logOut(){
         logged_in = false;
     }
    
