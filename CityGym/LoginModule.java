@@ -1,4 +1,3 @@
-package CityGym;
 
 class InvalidLoginException extends Exception{
 
@@ -12,6 +11,8 @@ public class LoginModule{
     
     static Boolean logged_in;
     static Boolean nonExistent = false;
+    static Boolean isStaff;
+    
     /**
      * This method connects with database to retrieve 
      * expected password value for username
@@ -38,7 +39,7 @@ public class LoginModule{
      * @param username
      * @param password
      */
-    public static void authenticate(String username, String password) 
+    public static void authenticate(String username, String password)  //, haslo
     {
         
         // //Check validity of username 

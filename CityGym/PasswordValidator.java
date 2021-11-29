@@ -1,4 +1,4 @@
-package CityGym;
+
 // Java Program to check the validity
 // of a Password using User-Defined Exception
 
