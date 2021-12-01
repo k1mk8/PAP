@@ -1,6 +1,7 @@
 package tester;
 
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -23,7 +24,9 @@ public class Tester{
 			
 			LoginModule.authenticate(login, passwd);
 			
-			doBasicDemo();
+			QRGenerator.generateQr("LALALALALA");
+			System.out.println("Stworzono kod QR");
+			
 			
 			
 		}
@@ -32,11 +35,11 @@ public class Tester{
     }
     
  // Creates a single QR Code, then writes it to a PNG file and an SVG file.
- 	private static void doBasicDemo() throws IOException {
- 		String text = "Piotrek ma malego";          // User-supplied Unicode text
- 		QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
+ 	private static void doBasicDemo(String input) throws IOException {
  		
- 		QrCode qr = QrCode.encodeText(text, errCorLvl);  // Make the QR Code symbol
+ 		QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
+
+ 		QrCode qr = QrCode.encodeText(input, errCorLvl);  // Make the QR Code symbol
  		
  		BufferedImage img = toImage(qr, 10, 4);          // Convert to bitmap image
  		File imgFile = new File("hello-world-QR.png");   // File path for output
