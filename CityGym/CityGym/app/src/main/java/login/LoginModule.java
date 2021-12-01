@@ -11,6 +11,7 @@ class InvalidLoginException extends Exception{
 public class LoginModule{
     
     static Boolean logged_in;
+    static Boolean isTrainer;
     static Boolean nonExistent = false;
     /**
      * This method connects with database to retrieve 
@@ -21,6 +22,11 @@ public class LoginModule{
     static String getExpectedPassword(String username){
         
         if (username.equals("user")){
+            isTrainer = false;
+            return "password";
+        }
+        if (username.equals("trainer")){
+            isTrainer = true;
             return "password";
         }
         return "wrong_password";
@@ -38,7 +44,7 @@ public class LoginModule{
      * @param username
      * @param password
      */
-    public static Boolean authenticate(String username, String password)
+    public static int authenticate(String username, String password)
     {
         // //Check validity of username
         try{
@@ -55,7 +61,7 @@ public class LoginModule{
                 // Printing Output
                 System.out.println("Authentication Successful");
                 logged_in = true;
-                return true;
+                return isTrainer ? 2 : 1;
             }
             else
             {
@@ -67,7 +73,7 @@ public class LoginModule{
         catch( InvalidLoginException ILE){
             System.out.print(ILE.getMessage());
         }
-        return false;
+        return 0;
     }
 
 

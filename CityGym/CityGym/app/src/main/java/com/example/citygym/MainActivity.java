@@ -18,6 +18,7 @@ import com.example.citygym.databinding.FragmentLoginBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import login.LoginModule;
+import login.QRGenerator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         FragmentLoginBinding binding;
         binding = FragmentLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
     }
 
     public void showQR(View view){
         ImageView QRBig = findViewById(R.id.QRViewBig);
         QRBig.setVisibility(View.VISIBLE);
+        QRGenerator.setImageQR("976431258", QRBig);
         ImageView QR = findViewById(R.id.QRView);
         QR.setVisibility(View.GONE);
         ImageView Logo = findViewById(R.id.AppLogo);
@@ -59,13 +62,12 @@ public class MainActivity extends AppCompatActivity {
         String login = GetText.getText().toString();
         GetText = findViewById(R.id.Password_Input);
         String password = GetText.getText().toString();
-        Boolean logged_in = LoginModule.authenticate(login, password);
+        int logged_in = LoginModule.authenticate(login, password);
         Context context = getApplicationContext();
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
-        if(logged_in){
+        if(logged_in == 1){
             text = "Logged in";
-
             ActivityMainBinding binding;
             binding = ActivityMainBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
@@ -76,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             NavigationUI.setupWithNavController(binding.navView, navController);
+        }
+        else if(logged_in == 2){
+            text = "Logged in";
+            ActivityMainBinding binding;
+            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            BottomNavigationView navView = findViewById(R.id.nav_view);
+            AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_login, R.id.navigation_home_trainers, R.id.navigation_dashboard, R.id.navigation_notifications)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(binding.navView, navController);
+
         }
         else{
             text = "Check provided username and password";

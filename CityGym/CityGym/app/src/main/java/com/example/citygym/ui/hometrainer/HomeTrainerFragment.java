@@ -1,4 +1,4 @@
-package com.example.citygym.ui.home;
+package com.example.citygym.ui.hometrainer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,19 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.citygym.databinding.FragmentHomeBinding;
+import com.example.citygym.databinding.FragmentHometrainerBinding;
 
-public class HomeFragment extends Fragment {
+public class HomeTrainerFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private com.example.citygym.ui.hometrainer.HomeTrainerViewModel HomeTrainerViewModel;
+    private FragmentHometrainerBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        HomeTrainerViewModel =
+                new ViewModelProvider(this).get(HomeTrainerViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentHometrainerBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }

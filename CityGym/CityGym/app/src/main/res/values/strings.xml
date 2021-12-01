@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CityGym</string>
     <string name="title_home">Home</string>
+    <string name="title_home_trainer">Trainer home</string>
     <string name="title_login">Login</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
