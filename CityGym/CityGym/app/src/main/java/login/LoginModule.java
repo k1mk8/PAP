@@ -9,19 +9,17 @@ import java.sql.Statement;
 
 
 
-
 public class LoginModule{
-
+	
 	public static String message = null;
 	private static String connectionUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
 
-	/**
+    /**
      * Compares provided parameters with expected database value
      * @param login
      * @param password
      * @return true if given parameters equal expected values.
      */
-
     public static Boolean authenticate(String login, String password)
     {
     	message = null; 
