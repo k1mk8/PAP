@@ -52,6 +52,56 @@ public class LoginModule{
       
     }
     
+    
+    
+    
+    public static Boolean authenticate_2(String login, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+    	 
+    	
+    	Class.forName("com.mysql.jdbc.Driver").newInstance();
+    	Connection conn = null;
+    	
+    	String expected_password = null;
+    	try {
+    	        conn = DriverManager.getConnection(connectionUrl,"z24", "ds4znf");
+    	    } catch (java.sql.SQLException e1) {
+    	        e1.printStackTrace();
+    	    }
+    	    try {
+
+    	        Statement stmt = conn.createStatement();
+    	        ResultSet rs = stmt.executeQuery("SELECT password FROM temp WHERE login = " + "'" + login + "'");
+    	        
+    	        
+    	        if (rs.next()){
+    	        		expected_password = rs.getString("password");
+    	        	}
+    	        
+    	       
+    	    } catch (java.sql.SQLException e) {
+    	        e.printStackTrace();
+    	    }
+    	    	
+    	    if (password.equals(expected_password)) {
+            	
+            	message = "Authentication succesful.";
+            	return true;
+            }
+            else {
+            	message = "Wrong login or password.";
+            	return false;
+            }
+          
+    	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Creates singular database connection, checks 
      * if given login exists, then executes INSERT query.
