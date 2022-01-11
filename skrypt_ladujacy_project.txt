@@ -1,0 +1,155 @@
+INSERT INTO regiony VALUES (1, 'Europa', 'Europa poludniowo-zachodnia');
+INSERT INTO regiony VALUES (2, 'Europa', 'Europa poludniowo-wschodnia');
+INSERT INTO regiony VALUES (3, 'Europa', 'Europa zachodnia');
+INSERT INTO regiony VALUES (4, 'Europa', 'Europa srodkowo-zachodnia');
+INSERT INTO regiony VALUES (5, 'Europa', 'Europa srodkowo-wschodnia');
+INSERT INTO regiony VALUES (6, 'Europa', 'Europa wschodnia');
+INSERT INTO regiony VALUES (7, 'Europa', 'Europa polnocno-zachodnia');
+INSERT INTO regiony VALUES (8, 'Europa', 'Europa polnocno-wschodnia');
+INSERT INTO regiony VALUES (9, 'Ameryka Polnocna', 'Ameryka polnocna, czesc polnocna');
+INSERT INTO regiony VALUES (10, 'Ameryka Polnocna', 'Ameryka polnocna, czesc srodkowa');
+INSERT INTO regiony VALUES (11, 'Ameryka Polnocna', 'Ameryka polnocna, czesc poludniowa');
+INSERT INTO regiony VALUES (12, 'Ameryka Srodkowa', 'Ameryka srodkowa-kontynentalna');
+INSERT INTO regiony VALUES (13, 'Ameryka Srodkowa', 'Ameryka srodkowa-wyspowa');
+INSERT INTO regiony VALUES (14, 'Ameryka Poludnowa', 'Ameryka poludniowa, czesc polnocna');
+INSERT INTO regiony VALUES (15, 'Ameryka Poludnowa', 'Ameryka poludniowa, czesc srodkowa');
+INSERT INTO regiony VALUES (16, 'Ameryka Poludnowa', 'Ameryka poludniowa, czesc poludniowa');
+INSERT INTO regiony VALUES (17, 'Afryka', 'Afryka polnocna');
+INSERT INTO regiony VALUES (18, 'Afryka', 'Afryka srodkowa');
+INSERT INTO regiony VALUES (19, 'Afryka', 'Afryka poludniowa');
+INSERT INTO regiony VALUES (20, 'Azja', 'Azja mniejsza');
+INSERT INTO regiony VALUES (21, 'Azja', 'Azja wschodnia');
+INSERT INTO regiony VALUES (22, 'Azja', 'Azja srodkowa');
+INSERT INTO regiony VALUES (23, 'Azja', 'Azja zachodnia');
+INSERT INTO regiony VALUES (24, 'Azja', 'Azja-wyspowa');
+INSERT INTO regiony VALUES (25, 'Australia i Oceania', 'Australia i Oceania-kontynentalna');
+INSERT INTO regiony VALUES (26, 'Australia i Oceania', 'Australia i Oceania-wyspowa');
+
+COMMIT;
+
+INSERT INTO adresy VALUES (1, 'Polska', 'Warszawa', '02-507', 'Woloska', '80', '21', 5);
+INSERT INTO adresy VALUES (2, 'Polska', 'Warszawa', '02-156', 'Lechicka', '6', '2', 5);
+INSERT INTO adresy VALUES (3, 'Polska', 'Warszawa', '01-008', 'Karmelicka', '9', '15', 5);
+INSERT INTO adresy VALUES (4, 'Polska', 'Warszawa', '03-761', 'Zachariasza', '5', '9', 5);
+INSERT INTO adresy VALUES (5, 'Polska', 'Warszawa', '03-567', 'Zlotopolska', '10', '61', 5);
+INSERT INTO adresy VALUES (6, 'Polska', 'Lublin', '20-400', 'Chmielna', '12', '1', 5);
+INSERT INTO adresy VALUES (7, 'Polska', 'Lublin', '20-400', 'Boleslawa Chrobrego', '7', '51', 5);
+INSERT INTO adresy VALUES (8, 'Polska', 'Krotoszyn', '63-700', 'Zielona', '3', '-', 5);
+INSERT INTO adresy VALUES (9, 'Polska', 'Gniezno', '62-200', 'Staszica', '4', '18', 5);
+INSERT INTO adresy VALUES (10, 'Polska', 'Chlebowo', '73-113', 'Chlebowo', '6', '-', 5);
+INSERT INTO adresy VALUES (11, 'Niemcy', 'Fulda', '36037', 'Zieherser Weg', '24', '4', 4);
+INSERT INTO adresy VALUES (12, 'Francja', 'Rennes', '35000', 'Rue de Redon', '12', '3', 3);
+INSERT INTO adresy VALUES (13, 'Hiszpania', 'Sevilla', '41013', 'C. Utrera', '31', '-', 1);
+INSERT INTO adresy VALUES (14, 'Grecja', 'Argos', '212 00', 'Theatrou', '44', '2', 2);
+INSERT INTO adresy VALUES (15, 'Rosja', 'Aleksin', '301361', 'Ulitsa Mira', '7', '3', 6);
+INSERT INTO adresy VALUES (16, 'Islandia', 'Reykjavik', '43V7+4C', 'Hellusund', '4', '5', 7);
+INSERT INTO adresy VALUES (17, 'Finlandia', 'Boden', '961 75', 'Kyrgatan', '31B', '83', 8);
+INSERT INTO adresy VALUES (18, 'Kanada', 'Edmonton', 'AB T6C 1R7', '92 AVE NW', '7908', '-', 9);
+INSERT INTO adresy VALUES (19, 'USA', 'Omaha', 'NE 68105', 'Woolworth Ave', '3402', '-', 10);
+INSERT INTO adresy VALUES (20, 'Meksyk', 'Meksyk', '06090', 'C. Regina', '148', '6B', 11);
+INSERT INTO adresy VALUES (21, 'Gwatemala', 'Gwatemala', 'JF7M+7GR', 'Calle', '2a', '-', 12);
+INSERT INTO adresy VALUES (22, 'Dominikana', 'Santo Domingo', 'SJA5+8B1', 'C. Gala', '9', '-', 13);
+INSERT INTO adresy VALUES (23, 'Wenezuela', 'Caracas', 'G35R+5R', 'Av. Este 4', '1010', '5G', 14);
+INSERT INTO adresy VALUES (24, 'Boliwia', 'La Paz', 'FVVC+9V', 'Av. Arce', '2164', '-', 15);
+INSERT INTO adresy VALUES (25, 'Argentyna', 'Santa Cruz', 'F375+MV', 'Las Heras', '3', '-', 16);
+INSERT INTO adresy VALUES (26, 'Egipt', 'Kair', '26X7+HP', 'Shaheens', '19', '5', 17);
+INSERT INTO adresy VALUES (27, 'Republika Srodkowoafrykanska', 'Bangui', '9HW5+W2P', 'Koudoukou', '1', '-', 18);
+INSERT INTO adresy VALUES (28, 'Republika Poudniowej Afryki', 'Newton Park', 'G615+AV', 'Burt Dr', '17', '-', 19);
+INSERT INTO adresy VALUES (29, 'Liban', 'Tyre', '7684+Q3P', 'Abou Deib', '16', '-', 20);
+INSERT INTO adresy VALUES (30, 'Kazachstan', 'Karaganda', 'R33X+W5P', 'Nurken Abdirov Avenue', '100000', '4', 21);
+INSERT INTO adresy VALUES (31, 'Chiny', 'Wuwei', '733004', 'Qilian Blvd', '65', '-', 22);
+INSERT INTO adresy VALUES (32, 'Korea Poludniowa', 'Seul', 'HX6W+XX', 'Toegye-ro', '235', '856', 23);
+INSERT INTO adresy VALUES (33, 'Sri Lanka', 'Kandy', '7JVM+5F', 'Peradeniya Rd', '20000', '51', 24);
+INSERT INTO adresy VALUES (34, 'Australia', 'Sydney', '458V+8V', 'Bay St', '1', '-', 25);
+INSERT INTO adresy VALUES (35, 'Fidżi', 'Lautoka', '9FP3+3Q', 'Hospital Road', '1', '-', 26);
+INSERT INTO adresy VALUES (36, 'Polska', 'Warszawa', '00-140', 'aleja "Solidarnosci"', '72', '1', 5);
+INSERT INTO adresy VALUES (37, 'Polska', 'Warszawa', '00-132', 'Grzybowska', '24', '68', 5);
+INSERT INTO adresy VALUES (38, 'Polska', 'Warszawa', '02-301', 'Grojecka', '20C', '16', 5);
+INSERT INTO adresy VALUES (39, 'Polska', 'Warszawa', '00-801', 'Chmielna', '120', '1', 5);
+INSERT INTO adresy VALUES (40, 'Polska', 'Warszawa', '00-560', 'Mokotowska', '27', '61', 5);
+
+COMMIT;
+
+INSERT INTO banki VALUES (1, 'PEKAO SA', 36);
+INSERT INTO banki VALUES (2, 'Millenium SA', 37);
+INSERT INTO banki VALUES (3, 'PKO BP', 38);
+
+COMMIT;
+
+INSERT INTO dzien VALUES (1, 'Poniedzialek');
+INSERT INTO dzien VALUES (2, 'Wtorek');
+INSERT INTO dzien VALUES (3, 'Sroda');
+INSERT INTO dzien VALUES (4, 'Czwartek');
+INSERT INTO dzien VALUES (5, 'Piatek');
+INSERT INTO dzien VALUES (6, 'Sobota');
+INSERT INTO dzien VALUES (7, 'Niedziela');
+
+
+COMMIT;
+
+
+INSERT INTO czlonkowie VALUES (1, 'Trener', 'Bartlomiej', 'Szymanski', 01252536195, to_date('25/05/2001', 'dd/mm/yyyy'), to_date('08/01/2022', 'dd/mm/yyyy'), 'bszyman1', 'bszyman1', 'bszyman1@gmail.com', 3);
+INSERT INTO czlonkowie VALUES (2, 'Trener', 'Karol', 'Kasperek', 01273110595, to_date('31/07/2001', 'dd/mm/yyyy'), to_date('08/01/2022', 'dd/mm/yyyy'), 'kkasper1', 'kkasper1', 'kkasper1@gmail.com', 2);
+INSERT INTO czlonkowie VALUES (3, 'Trener', 'Szymon', 'Dyszewski', 01221836195, to_date('18/02/2001', 'dd/mm/yyyy'), to_date('08/01/2022', 'dd/mm/yyyy'), 'sdyszew1', 'sdyszew1', 'sdyszew1@gmail.com', 1);
+INSERT INTO czlonkowie VALUES (4, 'Klient', 'Blazej', 'Wilkolawski', 01280336191, to_date('03/08/2001', 'dd/mm/yyyy'), to_date('09/01/2022', 'dd/mm/yyyy'), 'bwilkol1', 'bwilkol1', 'bwilkol1@gmail.com', 4);
+INSERT INTO czlonkowie VALUES (5, 'Klient', 'Dominika', 'Ziolkiewicz', 01212736194, to_date('27/01/2001', 'dd/mm/yyyy'), to_date('10/01/2022', 'dd/mm/yyyy'), 'dziolki1', 'dziolki1', 'dziolki1@gmail.com', 5);
+INSERT INTO czlonkowie VALUES (6, 'Klient', 'Maria', 'Koras', 03212736198, to_date('27/01/2003', 'dd/mm/yyyy'), to_date('10/01/2022', 'dd/mm/yyyy'), 'mkoras1', 'mkoras1', 'mkoras1@gmail.com', 6);
+
+COMMIT;
+
+INSERT INTO przedzialy VALUES (1,  6, 7);
+INSERT INTO przedzialy VALUES (2,  7, 8);
+INSERT INTO przedzialy VALUES (3,  8, 9);
+INSERT INTO przedzialy VALUES (4,  9, 10);
+INSERT INTO przedzialy VALUES (5,  10, 11);
+INSERT INTO przedzialy VALUES (6,  11, 12);
+INSERT INTO przedzialy VALUES (7,  12, 13);
+INSERT INTO przedzialy VALUES (8,  13, 14);
+INSERT INTO przedzialy VALUES (9,  14, 15);
+INSERT INTO przedzialy VALUES (10,  15, 16);
+INSERT INTO przedzialy VALUES (11,  16, 17);
+INSERT INTO przedzialy VALUES (12,  17, 18);
+INSERT INTO przedzialy VALUES (13,  18, 19);
+INSERT INTO przedzialy VALUES (14,  19, 20);
+INSERT INTO przedzialy VALUES (15,  20, 21);
+INSERT INTO przedzialy VALUES (16,  21, 22);
+INSERT INTO przedzialy VALUES (17,  22, 23);
+INSERT INTO przedzialy VALUES (18,  23, 24);
+
+COMMIT;
+
+INSERT INTO typ_abonamentu VALUES (1, 'Trener', 0);
+INSERT INTO typ_abonamentu VALUES (2, 'Standard', 50);
+INSERT INTO typ_abonamentu VALUES (3, 'Premium', 80);
+INSERT INTO typ_abonamentu VALUES (4, 'VIP', 150);
+INSERT INTO typ_abonamentu VALUES (5, 'Diamond', 300);
+
+COMMIT;
+
+INSERT INTO saldo VALUES (1, 59124042690093844445937633, 'Biezace', 0, 1, 1);
+INSERT INTO saldo VALUES (2, 70124064658862473095623129, 'Biezace', 0, 1, 2);
+INSERT INTO saldo VALUES (3, 40124035109699800104176518, 'Biezace', 0, 1, 3);
+INSERT INTO saldo VALUES (4, 08102024016528692478995260, 'Biezace', 0, 2, 4);
+INSERT INTO saldo VALUES (5, 95124030315147420524532667, 'Biezace', 0, 3, 5);
+INSERT INTO saldo VALUES (6, 16959810205916694274076588, 'Biezace', 0, 3, 6);
+
+COMMIT;
+
+INSERT INTO silownie VALUES (1, 39);
+INSERT INTO silownie VALUES (2, 40);
+
+COMMIT;
+
+INSERT INTO abonamenty VALUES (1, to_date('09/01/2022', 'dd/mm/yyyy'), to_date('09/02/2022', 'dd/mm/yyyy'), 4, 1, 2);
+INSERT INTO abonamenty VALUES (2, to_date('10/01/2022', 'dd/mm/yyyy'), to_date('10/02/2022', 'dd/mm/yyyy'), 5, 1, 3);
+INSERT INTO abonamenty VALUES (3, to_date('10/01/2022', 'dd/mm/yyyy'), to_date('10/02/2022', 'dd/mm/yyyy'), 6, 2, 4);
+INSERT INTO abonamenty VALUES (4, to_date('08/01/2022', 'dd/mm/yyyy'), to_date('08/02/2022', 'dd/mm/yyyy'), 1, 2, 1);
+INSERT INTO abonamenty VALUES (5, to_date('08/01/2022', 'dd/mm/yyyy'), to_date('08/02/2022', 'dd/mm/yyyy'), 2, 1, 1);
+INSERT INTO abonamenty VALUES (6, to_date('08/01/2022', 'dd/mm/yyyy'), to_date('08/02/2022', 'dd/mm/yyyy'), 3, 1, 1);
+
+COMMIT;
+
+INSERT INTO eventy VALUES (1, 'Spotkanie', 'Spotkanie z Mariuszem Pudzianowskim na temat kulturystyki', 1, 7, 1);
+INSERT INTO eventy VALUES (2, 'Trening', 'Trening z Robertem Korzeniowskim, wytrzymalosc i technika chodu', 2, 10, 2);
+
+COMMIT;
