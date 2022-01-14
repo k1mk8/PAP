@@ -1,5 +1,11 @@
 package login;
 
+import androidx.annotation.NonNull;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,11 +14,49 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 
 public class LoginModule{
 	
 	public static String message = null;
+	public static String StoredLogin;
 	private static String connectionUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
+	private static OkHttpClient client = new OkHttpClient();
+	//private static final String[] expected_password = {null};
+
+
+
+
+	private static String getPersonFromAPI(String login){
+
+		String[] passwd = {null};
+		String JSONresponse = null;
+
+		Request request = new Request.Builder()
+				.url("http://192.168.1.17:8080/getperson?login="+ login)
+				.build();
+		try (Response response = client.newCall(request).execute()) {
+			if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+			JSONresponse = response.body().string();
+			System.out.println("Przed wywolaniem getPasswordFromAPI   " + JSONresponse);
+
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+
+		return JSONresponse;
+	}
+
+
 
     /**
      * Compares provided parameters with expected database value
@@ -22,188 +66,82 @@ public class LoginModule{
      */
     public static Boolean authenticate(String login, String password)
     {
-    	message = null; 
-        String expected_password = null;
+		message = null;
+		final String[] expected_password = {null};
+		final String[] person = {null};
+
+		if (login.isEmpty()){
+			return false;
+		}
+		else{
+			StoredLogin = login;
+		}
+
+
+		Thread loginThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				person[0] = getPersonFromAPI(login);
+			}
+		});
+
+		loginThread.start();
 
 		try {
-			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			loginThread.join();
+			JSONObject jsPassword = new JSONObject(person[0]);
+			expected_password[0] = jsPassword.getString("password");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (JSONException j){
+			j.printStackTrace();
 		}
 
-		try(Connection con = DriverManager.getConnection(connectionUrl,"z24", "ds4znf");
-				Statement stmt = con.createStatement();)
-        {
-			ResultSet rs = stmt.executeQuery("SELECT password FROM temp WHERE login = " + "'" + login + "'");
-        	if(rs.next()){
-        		expected_password = rs.getString("password");
-        	}
-        }
-        // Handle any errors that may have occurred.
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+			System.out.println("Po wywolaniu getPasswordFromAPI " + expected_password[0]);
+		if (password.equals(expected_password[0])) {
 
-		if (password.equals(expected_password)) {
-        	
-        	message = "Authentication succesful.";
-        	return true;
-        }
-        else {
-        	message = "Wrong login or password.";
-        	return false;
-        }
-      
+			message = "Authentication succesful.";
+			return true;
+		}
+		else {
+			message = "Wrong login or password.";
+			return false;
+		}
     }
-    
-    
-    
-    
-    public static Boolean authenticate_2(String login, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-    	 
-    	
-    	Class.forName("com.mysql.jdbc.Driver").newInstance();
-    	Connection conn = null;
-    	
-    	String expected_password = null;
-    	try {
-    	        conn = DriverManager.getConnection(connectionUrl,"z24", "ds4znf");
-    	    } catch (java.sql.SQLException e1) {
-    	        e1.printStackTrace();
-    	    }
-    	    try {
 
-    	        Statement stmt = conn.createStatement();
-    	        ResultSet rs = stmt.executeQuery("SELECT password FROM temp WHERE login = " + "'" + login + "'");
-    	        
-    	        
-    	        if (rs.next()){
-    	        		expected_password = rs.getString("password");
-    	        	}
-    	        
-    	       
-    	    } catch (java.sql.SQLException e) {
-    	        e.printStackTrace();
-    	    }
-    	    	
-    	    if (password.equals(expected_password)) {
-            	
-            	message = "Authentication succesful.";
-            	return true;
-            }
-            else {
-            	message = "Wrong login or password.";
-            	return false;
-            }
-          
-    	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Creates singular database connection, checks 
-     * if given login exists, then executes INSERT query.
-     *	
-     * @param login
-     * @param password
-     * @return true if succesfuly inserted data 
-     */
-  public static Boolean register(String login, String password) {
-	  message = null;
-	  try {
-			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-   
-      
-      try (Connection con = DriverManager.getConnection(connectionUrl,"z24", "ds4znf"); Statement stmt = con.createStatement();) 
-      {
-      	
-      	ResultSet rs;
-      	
-      	
-      	rs = stmt.executeQuery("SELECT login FROM temp WHERE login = " + "'" + login + "'");
-      	
-      	if (rs.next()) {
-      		message = "Login already taken.";
-      		return false;
-      		
-      	}
-      	else {
-      	rs = stmt.executeQuery("INSERT INTO temp VALUES (DEFAULT, '" + login + "' , '" + password + "')");
-      	rs = stmt.executeQuery("COMMIT");
-      	message = "Succesfuly registered";
-      	return true;
-      	}
-      	
-          
-      }
-      // Handle any errors that may have occurred.
-      catch (SQLException e) {
-          e.printStackTrace();
-      }
-		return false;
-	}
-	
-  
-  	/**
-  	 * Creates one time database connection. 
-  	 * Retrieves data searching by login parameter.
-  	 * @param login
-  	 * @return resultList - first index is PrimaryKey
-  	 */
-  public static String[] getUserData(String login) {
-	  	
-	  	message = null;
-	  	
-		String[] resultList = new String[10];
+
+    public static String getUserData(){
+		final String[] person = {null};
+
+		Thread loginThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				person[0] = getPersonFromAPI(StoredLogin);
+			}
+		});
+
+		loginThread.start();
+
 		try {
-			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			loginThread.join();
+			JSONObject jsPerson = new JSONObject(person[0]);
+			jsPerson.remove("password");
+			person[0] = jsPerson.toString();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
- 
-    
-    try (Connection con = DriverManager.getConnection(connectionUrl,"z24", "ds4znf"); Statement stmt = con.createStatement();) 
-    {
-    	
-    	ResultSet rs;
-    	rs = stmt.executeQuery("SELECT * FROM temp WHERE login = " + "'" + login + "'");
-    	ResultSetMetaData rsmd = rs.getMetaData();  
-    	
-    	if (rs.next()) {
-	
-    		for (int i = 1 ; i <= rsmd.getColumnCount() ; i++) {
-    			
-    			resultList[i-1] = rs.getString(i);
-    		
-    		}  		
-    	}
-    	else {
-    		message = "No such user in database.";
-    		
-    	}
-    }          
-    // Handle any errors that may have occurred.
-    catch (SQLException e) {
-        e.printStackTrace();
-    }
-    
-    return resultList;
+		catch (JSONException j){
+			j.printStackTrace();
+		}
+		return person[0];
 	}
-	
-	  
-	
+
+
+//	public static Boolean registerUser(String login, String password){
+//
+//	}
+
 	  
 }	
 
