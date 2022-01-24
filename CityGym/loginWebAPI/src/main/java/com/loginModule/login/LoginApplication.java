@@ -6,6 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.interceptor.AroundInvoke;
+import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
+import java.lang.reflect.Array;
 import java.util.List;
 
 
@@ -14,6 +19,10 @@ import java.util.List;
 public class LoginApplication {
 	@Autowired
 	UserRepository repo;
+	@Autowired
+	AddressRepository addressRepo;
+	@Autowired
+	EventRepository EventRepo;
 
 //	@GetMapping("/getpassword")
 //	public String getPassword(@RequestParam String login){
@@ -39,27 +48,58 @@ public class LoginApplication {
 
 
 	@PostMapping("/register")
-	public Boolean register(@RequestParam   String imie,
-							 String nazwisko, String PESEL, String data_urodzenia,
-							 String login, String haslo){
+	public Boolean register(@RequestParam  String kraj, String miasto, String kod_pocztowy, String ulica,
+							String nr_budynku, String nr_mieszkania,int region,String imie,
+							 String nazwisko, int PESEL, String data_urodzenia,
+							 String login, String haslo, String email){
+							//15 params
 
-		List<Person> list = repo.findByLogin(login);
-		System.out.println("LIST OF USERS WITH THAT LOGIN	" + list);
+		System.out.println("TAKI JEST PODANY KURWIONY LOGIN:    " + login);
+		String received_login = repo.findByLogin_v2(login);
+		System.out.println("LIST OF USERS WITH THAT LOGIN	" + received_login);
 
-		if (list.isEmpty()){
-			Person newPerson = new Person(100,"Klient",  imie,
-					nazwisko,  PESEL,  data_urodzenia, data_urodzenia, login,  haslo,6);
-			repo.save(newPerson);
+		if (received_login == null) {
+//			System.out.println("WEWNATRZ PIERDOLONEGO IF     " + list);
+////			Address newAddress = new Address( kraj,  miasto,  kod_pocztowy,  ulica,  nr_budynku,  nr_mieszkania, 1);
+////			addressRepo.save(newAddress);
+////
+////			int address_id = addressRepo.findAddressId(kraj,  miasto,  kod_pocztowy,  ulica,  nr_budynku,  nr_mieszkania, 1);
+//
+				try {
+					repo.create_adres_and_czlonek(kraj, miasto, kod_pocztowy, ulica,
+							nr_budynku, nr_mieszkania, region, "Klient", imie,
+							nazwisko, PESEL, data_urodzenia,
+							login, haslo, email);
+				}
+				catch(NegativeArraySizeException n){
+
+				}
+
+			System.out.println("Po wywolaniusdahksuhbluhsvbklu;j.HKAuwj.skhvjnsbjk.hv");
 
 			return true;
 		}
-		else{
-			return false;
-		}
+		else{return false;}
+
 	}
 
 
 
+
+
+
+
+
+
+	@PostMapping("/addEvent")
+	public Boolean addEvent(@RequestParam String rodzaj, String opis, int dzien_dzien_id, int przedzialy_przedzial_id){
+
+
+			Event event = new Event(rodzaj, opis, dzien_dzien_id, przedzialy_przedzial_id);
+			EventRepo.save(event);
+			return true;
+
+	}
 
 
 
@@ -70,29 +110,3 @@ public class LoginApplication {
 }
 
 
-
-
-//	@("/checkIfExists")
-//	public Boolean checkIfExists(@RequestParam String login){
-//		List<Person> list = repo.findByLogin(login);
-//		System.out.println(list);
-//		if (list.isEmpty()){
-//			return false; //does not exist
-//		}
-//		else{
-//			return true; //provided login is taken
-//		}
-//	}
-//
-//	@PostMapping ("/insertAllData")
-//	public Boolean insertAllData(@RequestParam String login, String password, .............){
-//		Person newPerson = new Person();
-//		newPerson.setPassword(password);
-//		newPerson.setLogin(login);
-//		Person person = repo.save(newPerson);
-//		if(person.isEmpty){
-//			return false;
-//		}
-//		return true;
-//
-//	}

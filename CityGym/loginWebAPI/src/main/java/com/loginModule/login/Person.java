@@ -1,53 +1,42 @@
 package com.loginModule.login;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 
 @Entity
-
-
 @Table(name = "czlonkowie")
 public class Person {
+
+    @Autowired
+
     @Id
     private int czlonek_id;
     private String trener_flag;
     private String imie;
     private String nazwisko;
-    private String PESEL;
+    private int PESEL;
     private String data_urodzenia;
     private String data_dolaczenia;
     private String login;
     private String haslo;
+    private String email;
     private int adresy_adres_id;
 
     public static Person nullPerson(){
-        return new Person(0, null, null, null,null,null, null, null, null,0);
+        return new Person(null, null, null, null,
+                0,null, null, null, null, null,0);
     }
     public Person() {
         this.trener_flag = "Klient";
     }
 
-//    public Person(int id, String trener_flag, String name, String surname,
-//                  String PESEL, String date_join, String date_leave, String login,
-//                  String password, String email, int address_id) {
-//        this.id = id;
-//        this.trener_flag = trener_flag;
-//        this.name = name;
-//        this.surname = surname;
-//        this.PESEL = PESEL;
-//        this.date_birth = date_birth;
-//        this.date_join = date_join;
-//        this.login = login;
-//        this.password = password;
-//        this.email = email;
-//        this.address_id = address_id;
-//    }
 
-    public Person(int czlonek_id, String trener_flag, String imie, String nazwisko,
-                  String PESEL, String data_urodzenia, String data_dolaczenia, String login,
-                  String haslo, int adresy_adres_id) {
+    public Person( Integer czlonek_id, String trener_flag, String imie, String nazwisko,
+                  int PESEL, String data_urodzenia, String data_dolaczenia, String login,
+                  String haslo,String email, int adresy_adres_id) {
         this.czlonek_id = czlonek_id;
         this.trener_flag = trener_flag;
         this.imie = imie;
@@ -57,7 +46,23 @@ public class Person {
         this.data_dolaczenia = data_dolaczenia;
         this.login = login;
         this.haslo = haslo;
+        this.email = email;
         this.adresy_adres_id = adresy_adres_id;
+    }
+
+    public Person( String trener_flag, String imie, String nazwisko,
+                  int PESEL, String data_urodzenia, String login,
+                  String haslo, String email, int adresy_adres_id) {
+
+        this.trener_flag = trener_flag;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.PESEL = PESEL;
+        this.data_urodzenia = data_urodzenia;
+        this.login = login;
+        this.haslo = haslo;
+        this.email = email;
+
     }
 
 
@@ -70,13 +75,12 @@ public class Person {
     +++++++++++++++++++++++++++++++++++++++++++++++
      */
 
-
-
-    public int getId() {
+    public Integer getCzlonek_id() {
         return czlonek_id;
     }
-    public void setId(int id) {
-        this.czlonek_id = id;
+
+    public void setCzlonek_id(Integer czlonek_id) {
+        this.czlonek_id = czlonek_id;
     }
 
     //LOGIN
@@ -120,11 +124,11 @@ public class Person {
         this.nazwisko = nazwisko;
     }
 
-    public String getPESEL() {
+    public int getPESEL() {
         return PESEL;
     }
 
-    public void setPESEL(String PESEL) {
+    public void setPESEL(int PESEL) {
         this.PESEL = PESEL;
     }
 
