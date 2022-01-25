@@ -1,16 +1,12 @@
 package com.loginModule.login;
 
-import net.bytebuddy.build.RepeatedAnnotationPlugin;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.interceptor.AroundInvoke;
-import javax.persistence.EntityManager;
-import javax.persistence.ParameterMode;
-import javax.persistence.StoredProcedureQuery;
-import java.lang.reflect.Array;
 import java.util.List;
 
 
@@ -54,7 +50,7 @@ public class LoginApplication {
 							 String login, String haslo, String email){
 							//15 params
 
-		System.out.println("TAKI JEST PODANY KURWIONY LOGIN:    " + login);
+		System.out.println("TAKI JEST PODANY  LOGIN:    " + login);
 		String received_login = repo.findByLogin_v2(login);
 		System.out.println("LIST OF USERS WITH THAT LOGIN	" + received_login);
 
@@ -75,7 +71,7 @@ public class LoginApplication {
 
 				}
 
-			System.out.println("Po wywolaniusdahksuhbluhsvbklu;j.HKAuwj.skhvjnsbjk.hv");
+
 
 			return true;
 		}
@@ -90,14 +86,38 @@ public class LoginApplication {
 
 
 
+	@GetMapping("/getEventByID")
+	public Event getEventByID(@RequestParam int event_id){
+
+		List <Event> eventList = EventRepo.getEventByID(event_id);
+
+		Event event = eventList.get(0);
+		return event;
+
+	}
+
+	@GetMapping("/getEventByDesc")
+	public Event getEventByDesc(@RequestParam String opis){
+
+		List <Event> eventList = EventRepo.getEventByDesc(opis);
+
+		Event event = eventList.get(0);
+		return event;
+
+	}
+
+
 
 	@PostMapping("/addEvent")
-	public Boolean addEvent(@RequestParam String rodzaj, String opis, int dzien_dzien_id, int przedzialy_przedzial_id){
+	public void addEvent(@RequestParam String rodzaj, String opis, int dzien_dzien_id, int przedzialy_przedzial_id, int silownie_id_silowni){
+
+		try {
+			EventRepo.addEvent(rodzaj, opis, dzien_dzien_id, przedzialy_przedzial_id, silownie_id_silowni);
+		}
+		catch(NegativeArraySizeException n){
+			}
 
 
-			Event event = new Event(rodzaj, opis, dzien_dzien_id, przedzialy_przedzial_id);
-			EventRepo.save(event);
-			return true;
 
 	}
 
