@@ -138,7 +138,7 @@ public class LoginModule{
     {
 		message = null;
 		final String[] expected_password = {null};
-		final String[] person = {null};
+		 String[] person = {null};
 
 		if (login.isEmpty()){
 			return false;
@@ -157,9 +157,12 @@ public class LoginModule{
 
 			loginThread.start();
 
+
 			try {
+
 				loginThread.join();
 				JSONObject jsPassword = new JSONObject(person[0]);
+				System.out.println(person[0]);
 				expected_password[0] = jsPassword.getString("password");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -180,7 +183,22 @@ public class LoginModule{
 		}
     }
 
+	public static Boolean getTrainer(){
+    	String data = getUserData();
 
+		JSONObject jsData = null;
+		try {
+			jsData = new JSONObject(data);
+			if(jsData.getString("trener_flag").equals("Trener")){
+				return true;
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+
+    	return false;
+	}
     public static String getUserData(){
 		final String[] person = {null};
 

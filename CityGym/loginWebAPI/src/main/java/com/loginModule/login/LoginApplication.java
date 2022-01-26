@@ -20,16 +20,6 @@ public class LoginApplication {
 	@Autowired
 	EventRepository EventRepo;
 
-//	@GetMapping("/getpassword")
-//	public String getPassword(@RequestParam String login){
-//
-//		List<Person> list = repo.findByLogin(login);
-//		Person person = list.get(0);
-//		String password = list.get(0).getLogin().toString();
-//		System.out.println(password);
-//
-//		return password;
-//	}
 
 	@GetMapping("/getperson")
 	public Person getPerson(@RequestParam String login){
@@ -55,12 +45,7 @@ public class LoginApplication {
 		System.out.println("LIST OF USERS WITH THAT LOGIN	" + received_login);
 
 		if (received_login == null) {
-//			System.out.println("WEWNATRZ PIERDOLONEGO IF     " + list);
-////			Address newAddress = new Address( kraj,  miasto,  kod_pocztowy,  ulica,  nr_budynku,  nr_mieszkania, 1);
-////			addressRepo.save(newAddress);
-////
-////			int address_id = addressRepo.findAddressId(kraj,  miasto,  kod_pocztowy,  ulica,  nr_budynku,  nr_mieszkania, 1);
-//
+
 				try {
 					repo.create_adres_and_czlonek(kraj, miasto, kod_pocztowy, ulica,
 							nr_budynku, nr_mieszkania, region, "Klient", imie,

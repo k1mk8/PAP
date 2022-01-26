@@ -84,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
         requestPermissions(new String[] { Manifest.permission.INTERNET }, 1);
 
 
-        TextView GetText = findViewById(R.id.Login_Input_register);
+        TextView GetText = findViewById(R.id.Login_Input);
         String login = GetText.getText().toString();
-        GetText = findViewById(R.id.Password_Input_register);
+        GetText = findViewById(R.id.Password_Input);
         String password = GetText.getText().toString();
-        logged_in = LoginModule.authenticate(login, password);
-        isTrainer = true; //TODO oracle connection
         Context context = getApplicationContext();
+        logged_in = LoginModule.authenticate(login, password);
+
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
         if(logged_in){
-
+            isTrainer = LoginModule.getTrainer();
             ActivityMainBinding binding;
             binding = ActivityMainBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());

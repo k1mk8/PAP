@@ -32,10 +32,3 @@ public interface UserRepository extends JpaRepository<Person, Long> {
                                   String login, String pass,
                                   String e_mail);
 }
-
-//         create_adres_and_czlonekInteger(int czlonek_id, String trener_flag, String imie, String nazwisko,
-//            String PESEL, String data_urodzenia, String data_dolaczenia, String login,
-//            String haslo,String email, int adresy_adres_id);
-//
-//}
-//(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?17)

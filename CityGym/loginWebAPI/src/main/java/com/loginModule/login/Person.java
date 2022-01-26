@@ -26,7 +26,7 @@ public class Person {
     private int adresy_adres_id;
 
     public static Person nullPerson(){
-        return new Person(null, null, null, null,
+        return new Person(0, null, null, null,
                 0,null, null, null, null, null,0);
     }
     public Person() {
