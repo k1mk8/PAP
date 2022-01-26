@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_home_trainers"
-        android:name="com.example.citygym.ui.hometrainer.HomeTrainerFragment"
-        android:label="@string/title_home_trainer"
-        tools:layout="@layout/fragment_hometrainer" />
-
-    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.citygym.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
@@ -34,4 +28,16 @@
         android:name="com.example.citygym.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_home_trainers"
+        android:name="com.example.citygym.ui.hometrainers.HomeTrainersFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_trainers" />
+
+    <fragment
+        android:id="@+id/navigation_events"
+        android:name="com.example.citygym.ui.events.EventsFragment"
+        android:label="@string/eventsmanagement"
+        tools:layout="@layout/fragment_events" />
 </navigation>
