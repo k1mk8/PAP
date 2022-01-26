@@ -60,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
         ImageView Avatar = findViewById(R.id.Avatar);
         Avatar.setVisibility(View.VISIBLE);
     }
-    public void register(View view) {
+
+    public void registerShow(View view) {
         View Login = findViewById(R.id.loginLayout);
-        Login.setVisibility(View.GONE);
+        Login.setVisibility(View.INVISIBLE);
         View Register = findViewById(R.id.registerLayout);
         Register.setVisibility(View.VISIBLE);
         TextView login = findViewById(R.id.Login_Input);
@@ -71,12 +72,105 @@ public class MainActivity extends AppCompatActivity {
         TextView passsword = findViewById(R.id.Password_Input);
         TextView passwordRegister = findViewById(R.id.Password_Input_register);
         passwordRegister.setText(passsword.getText());
+        Login = findViewById(R.id.registerLayout2);
+        Login.setVisibility(View.INVISIBLE);
     }
+
+    public void registerShow2(View view) {
+        View Login = findViewById(R.id.registerLayout);
+        Login.setVisibility(View.INVISIBLE);
+        View Register = findViewById(R.id.registerLayout2);
+        Register.setVisibility(View.VISIBLE);
+        Login = findViewById(R.id.registerLayout3);
+        Login.setVisibility(View.INVISIBLE);
+    }
+
+    public void registerShow3(View view) {
+        View Login = findViewById(R.id.registerLayout2);
+        Login.setVisibility(View.INVISIBLE);
+        View Register = findViewById(R.id.registerLayout3);
+        Register.setVisibility(View.VISIBLE);
+        Login = findViewById(R.id.registerLayout4);
+        Login.setVisibility(View.INVISIBLE);
+    }
+
+    public void registerShow4(View view) {
+        View Login = findViewById(R.id.registerLayout3);
+        Login.setVisibility(View.INVISIBLE);
+        View Register = findViewById(R.id.registerLayout4);
+        Register.setVisibility(View.VISIBLE);
+        Login = findViewById(R.id.registerLayout5);
+        Login.setVisibility(View.INVISIBLE);
+    }
+
+    public void registerShow5(View view) {
+        View Login = findViewById(R.id.registerLayout4);
+        Login.setVisibility(View.INVISIBLE);
+        View Register = findViewById(R.id.registerLayout5);
+        Register.setVisibility(View.VISIBLE);
+    }
+
+    public void register(View view) {
+        String country;
+        String city;
+        String postcode;
+        String street;
+        String buildingNumber;
+        String streetNumber;
+        int region;
+        String name;
+        String surname;
+        int pesel;
+        String date;
+        String login;
+        String password;
+        String email;
+
+        TextView dataView;
+
+        dataView = findViewById(R.id.Login_Input_register);
+        login = dataView.getText().toString();
+        dataView = findViewById(R.id.Password_Input_register);
+        password = dataView.getText().toString();
+        dataView = findViewById(R.id.email_Input_register);
+        email = dataView.getText().toString();
+        dataView = findViewById(R.id.name_Input_register);
+        name = dataView.getText().toString();
+        dataView = findViewById(R.id.surname_Input_register);
+        surname = dataView.getText().toString();
+        dataView = findViewById(R.id.pesel_Input_register);
+        pesel = Integer.parseInt(dataView.getText().toString());
+        dataView = findViewById(R.id.date_Input_register);
+        date = dataView.getText().toString();
+        dataView = findViewById(R.id.country_Input_register);
+        country = dataView.getText().toString();
+        dataView = findViewById(R.id.region_Input_register);
+        region = Integer.parseInt(dataView.getText().toString());
+        dataView = findViewById(R.id.city_Input_register);
+        city = dataView.getText().toString();
+        dataView = findViewById(R.id.postcode_Input_register);
+        postcode = dataView.getText().toString();
+        dataView = findViewById(R.id.street_Input_register);
+        street = dataView.getText().toString();
+        dataView = findViewById(R.id.streetnumber_Input_register);
+        streetNumber = dataView.getText().toString();
+        dataView = findViewById(R.id.buildingnumber_Input_register);
+        buildingNumber = dataView.getText().toString();
+
+        if(LoginModule.register(country, city,postcode, street, buildingNumber,
+                streetNumber, region, name, surname, pesel, date, login, password, email)){
+            Toast.makeText(getApplicationContext(), "Registration completed", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Registration unsuccessful", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void back(View view) {
         View Login = findViewById(R.id.loginLayout);
         Login.setVisibility(View.VISIBLE);
         View Register = findViewById(R.id.registerLayout);
-        Register.setVisibility(View.GONE);
+        Register.setVisibility(View.INVISIBLE);
     }
 
     public void login(View view){

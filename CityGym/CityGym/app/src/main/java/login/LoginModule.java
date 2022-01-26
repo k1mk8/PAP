@@ -31,7 +31,7 @@ public class LoginModule{
 	public static String StoredLogin;
 	private static String connectionUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
 	private static OkHttpClient client = new OkHttpClient();
-	private static String API_Address = "192.168.1.17";
+	private static String API_Address = "192.168.0.192";
 	//private static final String[] expected_password = {null};
 
 
