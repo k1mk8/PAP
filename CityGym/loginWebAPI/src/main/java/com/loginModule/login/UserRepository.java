@@ -2,6 +2,7 @@ package com.loginModule.login;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 
@@ -31,4 +32,8 @@ public interface UserRepository extends JpaRepository<Person, Long> {
                                   int PES,  String birth_date,
                                   String login, String pass,
                                   String e_mail);
+
+
+    @Query(value = "CALL update_password(?1,?2)", nativeQuery = true)
+    void update_password(String login, String haslo);
 }

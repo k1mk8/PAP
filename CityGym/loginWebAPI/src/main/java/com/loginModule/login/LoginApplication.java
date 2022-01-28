@@ -107,6 +107,20 @@ public class LoginApplication {
 	}
 
 
+	@PostMapping("/changePassword")
+	public Boolean changePassword(@RequestParam String login, String haslo){
+		try {
+			repo.update_password(login, haslo);
+		}
+		catch(NegativeArraySizeException n){
+		}
+
+		Person person = getPerson(login);
+		if(person.getPassword().equals(haslo)){
+			return true;
+		}
+		return true;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(LoginApplication.class, args);
