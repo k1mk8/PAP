@@ -313,6 +313,39 @@ public class LoginModule{
 
 	}
 
+	public static Boolean changePassword(String login, String old_pass, String new_pass) {
 
+    	final Boolean[] result = {false};
+
+		if (authenticate(login, old_pass)) {
+			Thread loginThread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					Request request = new Request.Builder()
+							.url("http://" + API_Address + ":8080/changePassword?login=" + login +
+									"&haslo=" + new_pass)
+							.build();
+					try (Response response = client.newCall(request).execute()) {
+						if (!response.isSuccessful())
+							throw new IOException("Unexpected code " + response);
+
+						result[0] = Boolean.parseBoolean(response.body().string());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+			loginThread.start();
+
+			try {
+				loginThread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return result[0];
+	}
 }	
 
