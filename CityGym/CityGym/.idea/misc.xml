@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CityGym/CityGym/CityGym/app/src/main/res/layout/activity_main.xml" value="0.454123112659698" />
+        <entry key="..\:/CityGym/CityGym/CityGym/app/src/main/res/layout/fragment_home.xml" value="0.5" />
+        <entry key="..\:/CityGym/CityGym/CityGym/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/CityGym/CityGym/CityGym/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3307291666666667" />
+        <entry key="..\:/CityGym/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/CityGym/app/src/main/res/layout/fragment_dashboard.xml" value="0.2957427536231884" />
+        <entry key="..\:/CityGym/app/src/main/res/layout/fragment_home.xml" value="0.2957427536231884" />
+        <entry key="..\:/CityGym/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2942708333333333" />
+        <entry key="..\:/CityGym/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.403125" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_dashboard.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_events.xml" value="0.409375" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_home.xml" value="0.5456410256410257" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_homeTrainer.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_home_trainers.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_hometrainer.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_login.xml" value="0.4505208333333333" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/layout/fragment_notifications.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3307291666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/menu/bottom_nav_menu_trainer.xml" value="0.5541666666666667" />
+        <entry key="..\:/pap21z-z24/CityGym/CityGym/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.5703125" />
+        <entry key="app/src/main/res/layout/fragment_events.xml" value="0.24139492753623187" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.12552083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

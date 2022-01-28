@@ -1,0 +1,38 @@
+Ogólny opis struktury bazy danych do projektu "CityGym"
+
+Członkowie- struktura przechowująca klucze zewnętrzne. 
+prosimy o potwierdzenie tego stwierdzenia: Jest relacją złożoną
+pomiędzy encjami Grafik,Platnosc,Abonamenty,DaneCzlonka. Zawiera flagę
+rozróżniającą członka od trenera.
+
+DaneCzlonek- encja przechowująca dane personalne czlonka silowni.
+Wyizolowanie tych danych ułatwi szyfrowanie
+danych osobowych (funk. dodatkowa) 
+
+LogData- szyfrowana encja, zawierająca dane autoryzacyjne 
+używane podczas logowania użytkownika do aplikacji.
+
+Adresy - przechowuje adresy zamieszkania.
+
+Platnosc- zawiera dane billingowe użytkownika.
+
+Banki- zawiera dane zweryfikowanych banków.
+
+Grafik- struktura zawierająca klucze zewnętrzne, agregująca informacje
+dotyczące dostępności danego trenera w danym dniu i przedziale godzinowym, 
+oraz siłowni. 
+
+Przedzialy- encja zawierająca predefiniowane przedzialy godzinowe slużące do 
+strukturyzacji grafiku w encji Grafik.
+
+Dzien- encja zawierająca dni tygodnia, składające się na strukturę encji 
+Grafik oraz Eventy.
+
+Abonamenty- zawiera informacje o abonamencie przypisanym do użytkownika- 
+status aktywności, informacje dodatkowe.
+
+Silownie- encja przechowująca dane na temat placówki sieci siłowni. 
+
+Eventy- przechowuje informacje odnośnie nazwy eventu, jego opisu oraz
+dacie i miejscu (placowce silowni). 
+ 

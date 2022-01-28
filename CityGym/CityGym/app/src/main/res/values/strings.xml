@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CityGym</string>
+    <string name="title_home">Home</string>
+    <string name="title_home_trainer">Trainer home</string>
+    <string name="title_login">Login</string>
+    <string name="title_dashboard">Events</string>
+    <string name="title_notifications">Shop</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="register">Register</string>
+    <string name="eventsmanagement">Events Management</string>
+</resources>
