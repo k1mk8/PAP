@@ -1,0 +1,155 @@
+PROCEDURY:
+<===================================================================================>
+
+create or replace PROCEDURE ADD_NEW_EVENT(rodzaj VARCHAR2,  opis VARCHAR2,  dzien_dzien_id NUMBER,  przedzialy_przedzial_id NUMBER,  silownie_id_silowni NUMBER) AS 
+BEGIN
+    
+    INSERT INTO eventy VALUES (NULL, rodzaj, opis, dzien_dzien_id, przedzialy_przedzial_id, silownie_id_silowni);
+    
+    
+END ADD_NEW_EVENT;
+
+
+<===================================================================================>
+
+create or replace PROCEDURE change_flag (czlo_id NUMBER, new_flag VARCHAR2)
+AS
+v_trener_flag VARCHAR2 (40);
+BEGIN
+
+    SELECT trener_flag
+    INTO v_trener_flag
+    FROM czlonkowie
+    WHERE czlonek_id = czlo_id;
+
+    if new_flag = v_trener_flag THEN
+        dbms_output.put_line('Not change');
+    end if;
+    if new_flag != v_trener_flag THEN
+        UPDATE czlonkowie  SET trener_flag = new_flag
+        WHERE czlonek_id = czlo_id;
+        dbms_output.put_line('Change');
+    end if;
+END;
+
+<===================================================================================>
+
+create or replace PROCEDURE create_adres_and_czlonek (country VARCHAR2, city VARCHAR2, postal_code VARCHAR2, street VARCHAR2, building_nr VARCHAR2, flat_nr VARCHAR2, region NUMBER, name VARCHAR2, surname VARCHAR2, PES NUMBER, birth_date VARCHAR2, login VARCHAR2, pass VARCHAR2, e_mail VARCHAR2)
+AS
+c_tren_flag CONSTANT VARCHAR2(40) := 'Klient';
+v_date_birth DATE;
+v_adres_id NUMBER;
+BEGIN
+
+    v_date_birth := to_date(birth_date, 'dd/mm/yyyy');
+    INSERT INTO ADRESY VALUES (NULL,country, city, postal_code, street, building_nr, flat_nr, region);
+
+    SELECT adres_id
+    INTO v_adres_id
+    FROM adresy
+    WHERE kraj = country AND miasto = city AND kod_pocztowy = postal_code AND ulica = street AND nr_budynku = building_nr AND nr_mieszkania = flat_nr and regiony_id_regionu = region
+    FETCH FIRST 1 ROWS ONLY;
+
+    INSERT INTO czlonkowie(trener_flag, imie, nazwisko, pesel, data_urodzenia, data_dolaczenia, login, haslo, email, adresy_adres_id) VALUES(c_tren_flag, name, surname, PES, v_date_birth, NULL, login, pass, e_mail, v_adres_id);
+end;
+
+<===================================================================================>
+
+create or replace PROCEDURE UPDATE_PASSWORD (in_login VARCHAR2, in_haslo VARCHAR2) AS 
+BEGIN
+
+
+    UPDATE czlonkowie
+    SET haslo = in_haslo
+    WHERE login = in_login;
+    
+    COMMIT;
+    
+END UPDATE_PASSWORD;
+
+<===================================================================================>
+
+
+
+FUNKCJE
+
+
+<===================================================================================>
+
+
+create or replace FUNCTION calculate_distance_discount (czlo_id NUMBER)
+RETURN NUMBER
+AS
+v_continent VARCHAR2 (50);
+v_country VARCHAR2 (50);
+v_abon_cost NUMBER := 0;
+v_discount NUMBER := 0;
+c_europe_discount CONSTANT NUMBER := 0.1;
+c_asia_africa_discount CONSTANT NUMBER := 0.15;
+c_NA_NM_discount CONSTANT NUMBER := 0.2;
+c_SA_australia_discount CONSTANT NUMBER := 0.25;
+BEGIN
+    SELECT r.kontynent, a.kraj
+    INTO v_continent, v_country
+    FROM czlonkowie c JOIN adresy a ON c.adresy_adres_id = a.adres_id
+    JOIN regiony r ON a.regiony_id_regionu = r.id_regionu
+    WHERE c.czlonek_id = czlo_id;
+
+    SELECT t.cena
+    INTO v_abon_cost
+    FROM abonamenty a JOIN typ_abonamentu t ON a.typ_abonamentu_typ_id = t.typ_id
+    WHERE a.czlonkowie_czlonek_id = czlo_id;
+
+
+    if v_country != 'Polska' THEN
+        if v_continent = 'Europa' THEN
+            v_discount := c_europe_discount * v_abon_cost;
+        end if;
+        if v_continent = 'Ameryka Polnocna' OR v_continent = 'Ameryka Srodkowa' THEN
+            v_discount := c_NA_NM_discount * v_abon_cost;
+        end if;
+        if v_continent = 'Azja' OR v_continent = 'Afryka' THEN
+            v_discount := c_asia_africa_discount * v_abon_cost;
+        end if;
+        if v_continent = 'Ameryka Poludniowa' OR v_continent = 'Australia i Oceania' THEN
+            v_discount := c_SA_australia_discount * v_abon_cost;
+        end if;
+    end if;
+RETURN v_discount;
+end;
+
+
+<===================================================================================>
+
+
+create or replace FUNCTION interest_on_arrears (czlo_id NUMBER)
+RETURN NUMBER
+AS
+v_acc_balance NUMBER := 0;
+v_name VARCHAR2 (40);
+v_surname VARCHAR2 (40);
+c_interest_first CONSTANT NUMBER := 0.1;
+c_interest_second CONSTANT NUMBER := 0.25;
+BEGIN
+    SELECT s.stan_konta, c.imie, c.nazwisko
+    INTO v_acc_balance, v_name, v_surname
+    FROM czlonkowie c JOIN saldo s ON c.czlonek_id = s.czlonek_id
+    WHERE c.czlonek_id = czlo_id;
+
+    if v_acc_balance < 0 THEN
+        if v_acc_balance >= -500 THEN
+            v_acc_balance := v_acc_balance + v_acc_balance * c_interest_first;
+        else
+            v_acc_balance := v_acc_balance + v_acc_balance * c_interest_second;
+        end if;
+        dbms_output.put_line('Czlonek ma zaleglosci w wysokosci: ');
+        dbms_output.put_line(v_acc_balance);
+    else
+        dbms_output.put_line('Czlonek nie ma zaleglosci!');
+    end if;
+    UPDATE saldo SET stan_konta = v_acc_balance
+    WHERE czlonek_id = czlo_id;
+RETURN v_acc_balance;
+END;
+
+
